@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row justify-content-center mt-3">
+    <div class="col-6">
+      <h1>Add Dino to <%= @park.name %></h1>
+      <%= simple_form_for [@park, @dinosaur] do |f| %>
+        <%= f.input :name %>
+        <%= f.input :species, collection: Dinosaur::SPECIES, input_html: {allow_blank: false } %>
+        <%= f.submit class: "btn btn-danger" %>
+      <% end %>
+    </div>
+  </div>
+</div>
