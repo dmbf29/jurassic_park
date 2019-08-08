@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_07_085707) do
+ActiveRecord::Schema.define(version: 2019_08_08_084352) do
 
   create_table "dinosaurs", force: :cascade do |t|
     t.string "name"
@@ -18,7 +18,23 @@ ActiveRecord::Schema.define(version: 2019_08_07_085707) do
     t.integer "park_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_url"
     t.index ["park_id"], name: "index_dinosaurs_on_park_id"
+  end
+
+  create_table "foods", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "meals", force: :cascade do |t|
+    t.integer "dinosaur_id"
+    t.integer "food_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dinosaur_id"], name: "index_meals_on_dinosaur_id"
+    t.index ["food_id"], name: "index_meals_on_food_id"
   end
 
   create_table "parks", force: :cascade do |t|

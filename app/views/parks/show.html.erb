@@ -9,10 +9,20 @@
   <div class="row">
     <div class="cards mt-3">
       <% @park.dinosaurs.each do  |dinosaur| %>
-        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(http://www.jurassicworld.com/sites/default/files/2016-10/JP1_castcrew_preview.jpg)">
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= dinosaur.image_url %>)">
+          <div class="card-foods">
+            <% dinosaur.meals.each do |meal| %>
+              <span><%= link_to meal.food.name, meal_path(meal), method: :delete, data: {confirm: "Hey i know it's weird, but do you want to delete this food?"} %></span>
+            <% end %>
+          </div>
           <%= dinosaur.name %>
           <br>
           <%= dinosaur.species %>
+          <small>
+            <%= link_to new_dinosaur_meal_path(dinosaur), class: "btn-chicken" do %>
+              <i class="fas fa-drumstick-bite"></i>
+            <% end %>
+          </small>
           <%= link_to dinosaur_path(dinosaur), method: :delete, data: { confirm: "Are you sure?" }, class: "card-remove-link " do %>
             <i class="fas fa-meteor"></i>
           <% end %>

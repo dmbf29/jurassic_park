@@ -1,0 +1,11 @@
+<div class="container mt-3">
+  <div class="row justify-content-center">
+    <div class="col col-sm-6">
+      <h1>Add a meal for <%= @dinosaur.name %></h1>
+      <%= simple_form_for [@dinosaur, @meal] do |f| %>
+        <%= f.association :food, collection: Food.where.not(id: @dinosaur.foods) %>
+        <%= f.submit class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
